@@ -1,0 +1,44 @@
+We're going to pass a list into the html page
+
+main.py file:
+
+from flask import Flask
+from flask import render_template  #YOU HAVE TO ADD THIS TO RENDER TEMPLATES
+
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/<user>')
+def index(user=None):
+    return render_template("user.html",user=user)
+
+@app.route("/shopping")
+def shopping():
+    food = ["Cheese","Tuna","beef"]
+    return render_template("shopping.html",food=food)
+
+if __name__ == "__main__":
+    app.run()
+
+*********************************************************
+We're going to pass shopping.html so we need to create it
+*********************************************************
+
+shopping.html file:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shopping Bitches</title>
+  </head>
+  <body>
+    <ul>
+      {% for item in food%}
+
+      <li>{{ item }}</li>
+
+      {% endfor %}
+    </ul>
+  </body>
+</html>
