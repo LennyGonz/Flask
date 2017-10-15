@@ -1,0 +1,40 @@
+It's possible to map multiple URLs, especially when you're working on a home page
+When you need to login page, etc
+
+main.py file:
+from flask import Flask
+from flask import render_template  #YOU HAVE TO ADD THIS TO RENDER TEMPLATES
+
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/<user>')
+def index(user=None):
+    return render_template("user.html",user=user)
+
+if __name__ == "__main__":
+    app.run()
+
+****************************************************************************
+since we're going to render a template called user.html we need to create it
+****************************************************************************
+
+user.html file:
+
+from flask import Flask
+from flask import render_template  #YOU HAVE TO ADD THIS TO RENDER TEMPLATES
+
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/<user>')
+def index(user=None):
+    return render_template("user.html",user=user)
+
+if __name__ == "__main__":
+    app.run()
+
+********************************************************************************
+And     done!
+   we're
+********************************************************************************

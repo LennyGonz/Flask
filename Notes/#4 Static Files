@@ -1,0 +1,36 @@
+Connecting Static files to the HTML file:
+
+html file:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> profile </title>        | This is how we connect static files to html |
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}"> # HERE WE INSERT THE PYTHON FUNCTION
+  </head>                           | this is what we need to do link in flask |
+  <body>
+    <h1> Hey there {{ name }}</h1>
+  </body>
+</html>
+
+css file:
+
+.color
+{
+  color: blue;
+}
+
+main python file:
+
+from flask import Flask
+from flask import render_template  #YOU HAVE TO ADD THIS TO RENDER TEMPLATES
+
+app = Flask(__name__)
+
+@app.route('/profile/<name>')
+def profile(name):
+    return render_template("profile.html", name=name) # we need to insert the name of the html file
+                                                      # we also need to include our name variable
+if __name__ == "__main__":
+    app.run()
