@@ -1,0 +1,35 @@
+from flask import Flask
+from flask import request
+app = Flask(__name__)  #this the main website, name helps determine the root path, it helps Flask find other pages a lot faster
+
+# we're going to have a lot of pages, so we need to do routing
+
+#routing
+# @ signifies a decorator - way to wrap a function and mofying its behavior
+@app.route('/') # we want to connect a webpage. In this instance we only insert backslash **this is also a decorator**
+                # backslash in routing is just home page (i.e google.com/)
+                # lets say we want to make an about page
+                # @approute('/about/')
+def index():
+    return 'This is the homepage'
+
+@app.route('/tuna')
+def tuna():
+    return'<h5> Hello Niggas</h5>'
+
+# We can create variables so if we run this and enter /profile/lenny
+# it'll display hey there lenny
+@app.route('/profile/<username>')
+def profile(username):
+    return'hey there %s' %username #from the url we're calling a function username
+
+@app.route('/post/<int:post_id>') # WE HAVE TO PASS THE VARIABLE NAME: post_id
+def show_post(post_id): #here in parenthesis we pass the variable
+    return'Post ID is:  %s' %post_id
+
+# The @app.route and function index, both work together to do something called Mapping/routing
+# you need the return statement, because it returns whatever you insert after the return
+# in our example we return 'This is the homepage'
+
+if __name__ == "__main__": # this is a quick check, to make sure that we only start the webserver whenever this file is called directly
+    app.run(debug = True) # all this does is say "Start this app"

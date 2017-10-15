@@ -1,0 +1,23 @@
+from flask import Flask
+from flask import request #this gives info on how the user requested information
+
+# whenever we request a url from our sample webpage we're using the GET method
+#whenever a user submits information we use POST method
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'Method used: %s' %request.method
+# by default whenever you go anywhere on the internet we use GET method
+
+# So this page is capable of handling GET and POST
+@app.route('/bacon', methods=['GET','POST'])
+def bacon():
+    if request.method == "POST":
+        return "You are using POST"
+    else:
+        return "You are probably using GET"
+
+if __name__ == "__main__":
+    app.run(debug = True)
