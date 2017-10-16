@@ -1,0 +1,19 @@
+Step 1: pip install gunicorn
+
+step 2: pip freeze > requirements.txt
+
+step 3: echo web: gunicorn routes:app >Procfile
+
+* if this doesnt work try: echo web: run this thing >Procfile
+* then go to the Procfile and replace run this thing with gunicorn routes:app
+* so it should look like: web: gunicorn routes.app
+
+step 4: heroku create inside terminal
+
+step 5: git add --all git
+        git commit -m"heroku"
+        git push heroku master
+
+step 6: heroku open * and then it should open a new tab for you *
+
+step 7: after a tab is opened for you then ==> git push origin master
